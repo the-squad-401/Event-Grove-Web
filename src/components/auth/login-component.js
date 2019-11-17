@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import LoginContext from './login-context';
 
 export default function Login(props) {
+  const context = useContext(LoginContext);
+
   let handleSubmit = e => {
     e.preventDefault();
 
     let { username, password } = e.target;
-    this.context.login(username.value, password.value);
+    console.log(username.value, password.value);
+    context.login(username.value, password.value);
     e.target.reset();
   }
 
-  if(this.context.user) {
-    return (
-      <p>Login Successful</p>
-    )
-  }
-
   return (
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={e => handleSubmit(e)}>
       <input 
         placeholder="username"
         name="username"
@@ -33,5 +30,3 @@ export default function Login(props) {
   )
 
 }
-
-Login.contextType = LoginContext;

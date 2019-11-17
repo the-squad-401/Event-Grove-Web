@@ -23,7 +23,10 @@ export default class LoginProvider extends React.Component {
     superagent
       .post(`${URL}/signin`)
       .auth(username, password)
-        .then(token => this.verifyToken(token))
+        .then(response => {
+          let token = response.text;
+          this.verifyToken(token)
+        })
         .catch(error => console.log(error));
   }
 
@@ -43,7 +46,7 @@ export default class LoginProvider extends React.Component {
   }
 
   setLoginState = (token, user) => {
-    this.setState(token, user);
+    this.setState({token, user});
     token ? cookie.save('auth', token) : cookie.remove('auth');
   }
 
