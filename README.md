@@ -1,4 +1,4 @@
-![Event Grove Logo](./src/assets/eventgroveOrange.png) 
+![Event Grove Logo](./src/assets/img/eventgroveOrange.png) 
 
 ### Contributors: Jonathon Schwamman, Calvin Hall, Jacob Swenson, James Zobian
 
