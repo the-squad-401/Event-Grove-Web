@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import superagent from 'superagent';
 
+import BizCar from '../../components/carousels/business-carousel';
+import EventCard from '../../components/cards/event-card';
+
+import './home.scss';
+
 const URL = process.env.REACT_APP_API;
 
 export default function Home() {
@@ -37,11 +42,10 @@ export default function Home() {
 
   return (
     <section>
-      {events.map(event => {
-        return (
-          <p>{event.name}</p>
-        );
-      })}
+      <BizCar />
+      <div id='events'>
+        {events.map(event => <EventCard event={event} />)}
+      </div>
     </section>
   );
 }
