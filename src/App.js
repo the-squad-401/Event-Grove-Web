@@ -15,15 +15,15 @@ export default function App(props) {
   return (
     <>
       <div className="App">
-      <Header />
-      <section id="content">
-        <Aside />
-      </section>
+        <Header />
+        <section id="content">
+          <Aside />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/home" component={null} />
+          </Switch>
+        </section>
       </div>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/home" component={App} />
-      </Switch>
       <Footer></Footer>
   </>
   );
