@@ -16,7 +16,9 @@ export default function App(props) {
     <>
       <div className="App">
       <Header />
-      <Aside />
+      <section id="content">
+        <Aside />
+      </section>
       </div>
       <Switch>
         <Route path="/login" component={Login} />
