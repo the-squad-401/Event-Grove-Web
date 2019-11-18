@@ -20,7 +20,7 @@ export default function App(props) {
           <Aside />
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/home" component={App} />
+            <Route path="/home" component={null} />
           </Switch>
         </section>
       </div>
