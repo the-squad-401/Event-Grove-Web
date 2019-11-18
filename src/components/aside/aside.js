@@ -1,15 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import superagent from 'superagent';
+import cookie from 'react-cookies';
+
 import Auth from '../auth/auth';
 import LoginContext from '../auth/login-context';
-
 import './aside.scss';
+
+const URL = process.env.REACT_APP_API;
 
 export default function Aside(props) {
   const context = useContext(LoginContext);  
   const [subscriptions, setSubscriptions] = useState([]);
-  let loginLink;
-  if
+
+
+  useEffect(() => {
+    if(context.user) {
+
+      superagent
+        .get(``)
+    }
+  })
 
   return (
     <aside id="aside">
