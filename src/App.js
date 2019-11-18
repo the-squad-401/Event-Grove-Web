@@ -5,6 +5,9 @@ import './App.css';
 import Auth from './components/auth/auth';
 import LoginContext from './components/auth/login-context';
 import Login from './components/auth/login-component';
+import Header from './components/header/header';
+import Aside from './components/aside/aside';
+import Footer from './components/footer/footer';
 
 export default function App(props) {
   const context = useContext(LoginContext);
@@ -12,20 +15,14 @@ export default function App(props) {
   return (
     <>
       <div className="App">
-        <nav>
-          {context.user ? <li><Link to="" onClick={context.logout}>Logout</Link></li> :
-                              <li><Link to="/login">Login</Link></li>
-          }
-        </nav>
-
-        <Auth>
-          <p>Logged In</p>
-        </Auth>
+      <Header />
+      <Aside />
       </div>
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/home" component={App} />
-    </Switch>
+      </Switch>
+      <Footer></Footer>
   </>
   );
 }
