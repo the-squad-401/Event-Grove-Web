@@ -8,7 +8,7 @@ import Login from './components/auth/login-component';
 import Header from './components/header/header';
 import Aside from './components/aside/aside';
 import Footer from './components/footer/footer';
-
+import BizCar from './components/carousels/business-carousel'
 export default function App(props) {
   const context = useContext(LoginContext);
 
@@ -17,7 +17,9 @@ export default function App(props) {
       <div className="App">
         <Header />
         <section id="content">
+
           <Aside />
+          <BizCar />
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/home" component={null} />
