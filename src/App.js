@@ -3,6 +3,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Auth from './components/auth/auth';
+import Home from './pages/home-page/home';
 import LoginContext from './components/auth/login-context';
 import Login from './components/auth/login-component';
 import Header from './components/header/header';
@@ -20,7 +21,8 @@ export default function App(props) {
           <Aside />
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/home" component={null} />
+            <Route path="/home" component={Home} />
+            <Route path="/" component={Home} />
           </Switch>
         </section>
       </div>
