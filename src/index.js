@@ -1,7 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './App';
+import LoginProvider from './components/auth/auth-provider';
+
+function Main() {
+  return (
+    <LoginProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </LoginProvider>
+  )
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<Main />, rootElement);
 
