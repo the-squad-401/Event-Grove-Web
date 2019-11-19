@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, NavbarBrand, Form, FormControl, Button } from 'react-bootstrap';
+import LoginModal from '../modals/login-modal';
 
 import './header.scss';
 
@@ -13,6 +14,7 @@ export default function Header(props){
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button >Search</Button>
+          <LoginModal>Login</LoginModal>
         </Form>
       </Navbar>
     </header>
