@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <section>
       <BizCar images={featuredBusinesses} />
-      <div id='events'>
+      <div className='cards'>
         {events.map(event => <EventCard event={event} />)}
       </div>
     </section>
