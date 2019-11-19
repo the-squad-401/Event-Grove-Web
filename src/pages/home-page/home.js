@@ -33,7 +33,7 @@ export default function Home() {
         setBusinesses(response.body.results);
         setFeaturedBusinesses(selectRandom(response.body.results).map(business => ({
           src: business.bannerImage,
-          id: business._id,
+          url: `/business/${business._id}`,
         })));
       })
       .catch(console.error);
@@ -60,7 +60,7 @@ export default function Home() {
     <section>
       <BizCar images={featuredBusinesses} />
       <div className='cards'>
-        {events.map(event => <EventCard event={event} />)}
+        {events.map(event => <EventCard key={event._id} event={event} />)}
       </div>
     </section>
   );

@@ -36,7 +36,7 @@ export default function BusinessPage() {
   return (
     <section>
       <div className='cards'>
-        {businesses.map(business => <BusinessCard business={ business } />)}
+        {businesses.map(business => <BusinessCard key={business._id} business={ business } />)}
       </div>
     </section>
   );
