@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
 
-  > * {
+  > *:not(hr) {
     color: #fff;
     transition-duration: 0.3s;
     letter-spacing: 0.025em;
@@ -12,10 +12,17 @@
     padding: 10px 20px;
     outline: none;
     outline-color: rgb(255, 145, 0);
-    
-    &:hover {
+
+    &:not(hr):hover {
       background-color: #00447c;
       outline: 1px solid rgb(255, 145, 0);
     }
+  }
+
+  > hr {
+    margin: 5px 0;
+    width: 100%;
+    height: 5px;
+    color: #000;
   }
 }
