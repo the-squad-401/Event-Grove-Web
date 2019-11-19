@@ -37,7 +37,7 @@ export default function LoginModal(props) {
           <Form>
             <Form.Group controlId="formBasicEmail" onSubmit={e => handleSubmit(e)}>
               <Form.Label>Username</Form.Label>
-              <Form.Control type="email" placeholder="Username" />
+              <Form.Control type="username" placeholder="Username" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
