@@ -9,6 +9,7 @@ import Login from './components/auth/login-component';
 import Header from './components/header/header';
 import Aside from './components/aside/aside';
 import Footer from './components/footer/footer';
+import Business from './pages/business-page/business'
 export default function App(props) {
   const context = useContext(LoginContext);
 
@@ -23,6 +24,7 @@ export default function App(props) {
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
             <Route path="/" component={Home} />
+            <Route path="/businesses/:id" component={Business} />
           </Switch>
         </section>
       </div>
