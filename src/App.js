@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import './App.css';
-import Auth from './components/auth/auth';
+import './App.scss';
 import Home from './pages/home-page/home';
+import Businesses from './pages/businesses-page/businesses';
 import LoginContext from './components/auth/login-context';
 import Login from './components/auth/login-component';
 import Header from './components/header/header';
@@ -23,6 +23,7 @@ export default function App(props) {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
+            <Route path="/businesses" component={Businesses} />
             <Route path="/" component={Home} />
             <Route path="/businesses/:id" component={Business} />
           </Switch>
