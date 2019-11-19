@@ -14,11 +14,18 @@ export default function Aside(props) {
 
 
   useEffect(() => {
-    if(context.user) {
-      superagent
-        .get(``)
-    }
-  })
+    (async() => {
+      if(!context.user) return;
+
+      const subIds = await superagent
+        .get(`${URL}/user`)
+        .set('Authorization', `Bearer ${context.token}`)
+        .then(response => response.body.subscriptions)
+        .catch(console.error);
+      const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body}))));
+      setSubscriptions(subscriptions);
+    })();
+  }, [context])
 
   return (
     <aside id="aside">
@@ -28,7 +35,8 @@ export default function Aside(props) {
       <Link to="/about">About</Link>
       <Auth>
         <Link to="/subscriptions">Subscriptions</Link>
-        {subscriptions.map(business => <Link to={`/business:${business._id}`}>{business.name}</Link>)}
+        <hr></hr>
+        {subscriptions.map(sub => <Link key={sub.id} to={`/business/${sub.id}`}>{sub.business.name}</Link>)}
       </Auth>
     </aside>
     

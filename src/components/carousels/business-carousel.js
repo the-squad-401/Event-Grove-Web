@@ -10,10 +10,10 @@ export default function BussinessCarousel(props) {
   return(
     <Carousel>
       {
-        props.images.map(({src, id}) => {
+        props.images.map(({src, url}) => {
           return (
-            <Carousel.Item>
-              <div className="carousel-card" style={{backgroundImage: `url(${src})`}} onClick={(id && (() => window.location = `/business/${id}`)) || null}>
+            <Carousel.Item key={src}>
+              <div className="carousel-card" style={{backgroundImage: `url(${src})`}} onClick={(url && (() => window.location = url)) || null}>
 
               </div>
             </Carousel.Item>
