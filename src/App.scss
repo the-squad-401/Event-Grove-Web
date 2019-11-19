@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 div.cards {
