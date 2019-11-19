@@ -9,15 +9,18 @@ const URL = process.env.REACT_APP_API;
 
 export default function Business(props) {
 
-  const [business, setBusiness] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [business, setBusiness] = useState(null);
   const [events, setEvents] = useState([]);
 
   const fetchBusiness = () => {
     superagent
       .get(`${URL}/business/${props.match.params.id}`)
         .then(response => {
-          console.log(response.body);
-          setBusiness(response.body);
+          setBusiness(response.body)
+          setGallery(response.body.gallery.map(img => ({
+            src: img,
+          })))
         })
         .catch(error => console.log(error))
   }
@@ -26,38 +29,40 @@ export default function Business(props) {
     superagent
       .get(`${URL}/events/${props.match.params.id}`)
         .then(response => {
-          console.log(response.body);
           setEvents(response.body.results)
         })
         .catch(error => console.log(error))
   }
 
   useEffect(() => {
-    (async () => {
-      await fetchBusiness();
-      await fetchEvents();
-    })();
+    fetchBusiness();
+    fetchEvents();
   }, []);
 
-  return (
+  console.log(business);
+
+  return business ? (
   <>
+  <section>
     <Button>Subscribe</Button>
     <section>
-      <BizCar images={business} />
+      <BizCar images={gallery} />
     </section>
 
     <div className="businessInfo">
-      <span>Business Name: {business.name} </span>
-      <span>Category: {business.category}</span>
-      <span>Address: {business.address}</span>
-      <span>Hours: {business.hours}</span>
-      <span>Website: {business.externalUrl}</span>
+      <ul>Business Name: {business.name} </ul>
+      <ul>Category: {business.category}</ul>
+      <ul>Address: {business.address}</ul>
+      <ul>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</ul>
+      <ul>Hours: {business.hours.map(openHour => <span> {openHour.open}</span>)}-{business.hours.map(closeHour => <span> {closeHour.close}</span>)}</ul>
+      <ul>Website: {business.externalUrl}</ul>
     </div>
     <div className='cards'>
         {events.map(event => <EventCard event={event} />)}
       </div>
+  </section>
 
   </>
-  )
+  ) : null;
 
 }
