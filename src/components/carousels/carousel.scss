@@ -4,4 +4,9 @@ div.carousel {
   overflow: hidden;
   text-align: center;
   background-color: #333;
+
+  & * {
+    overflow: hidden;
+    max-width: 100%;
+  }
 }
