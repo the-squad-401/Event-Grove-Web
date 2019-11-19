@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+
+import EventModal from '../modals/event-modal';
 
 export default function EventCard(props) {
   const { event } = props;
@@ -10,7 +12,7 @@ export default function EventCard(props) {
       <Card.Body>
         <Card.Title>{event.name}</Card.Title>
         <Card.Text>{event.description}</Card.Text>
-        <Button variant="primary">Details</Button>
+        <EventModal event={event} />
       </Card.Body>
     </Card>
   )

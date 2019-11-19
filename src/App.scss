@@ -1,0 +1,24 @@
+#content {
+  position: absolute;
+  top: 76px;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+div.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // flex-basis: 1;
+  // justify-content: left;
+  // align-content: space-between;
+  & > * {
+    margin: 10px;
+  }
+}
