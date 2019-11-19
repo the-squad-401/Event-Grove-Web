@@ -4,20 +4,21 @@ import LoginContext from '../auth/login-context';
 
 
 export default function LoginModal(props) {
-  const { event } = props;
   const [show, setShow] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const context = useContext(LoginContext);
 
-  let handleSubmit = e => {
+  let handleSubmit = async e => {
     e.preventDefault();
 
-    let { username, password } = e.target;
-    console.log(username.value, password.value);
-    context.login(username.value, password.value);
-    e.target.reset();
+    console.log(username, password);
+    context.login(username, password);
+
+    console.log(context.user);
   }
   
   return (
@@ -34,15 +35,15 @@ export default function LoginModal(props) {
           Welcome Back!
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicEmail" onSubmit={e => handleSubmit(e)}>
+          <Form onSubmit={e => handleSubmit(e)}>
+            <Form.Group controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="username" placeholder="Username" />
+              <Form.Control type="username" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit
