@@ -5,7 +5,7 @@ import superagent from 'superagent';
 
 import LoginContext from './login-context';
 
-const URL = process.env.REACT_APP_API
+const URL = process.env.REACT_APP_API;
 
 export default class LoginProvider extends React.Component {
   constructor(props) {
