@@ -25,6 +25,7 @@ export default function Aside(props) {
       <Link to="/home">Home</Link>
       <Link to="/businesses">Businesses</Link>
       <Link to="/events">Events</Link>
+      <Link to="/about">About</Link>
       <Auth>
         <Link to="/subscriptions">Subscriptions</Link>
         {subscriptions.map(business => <Link to={`/business:${business._id}`}>{business.name}</Link>)}
