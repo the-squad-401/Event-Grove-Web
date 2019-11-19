@@ -10,8 +10,6 @@ import './header.scss';
 export default function Header(props){
   const context = useContext(LoginContext);
 
-  console.log(context.user);
-
   return (
     <header>
       <Navbar className="navbar-horizontal"

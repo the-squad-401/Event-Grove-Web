@@ -16,6 +16,8 @@ export default class LoginProvider extends React.Component {
       user: null,
       login: this.login,
       logout: this.logout,
+      clearError: this.clearError,
+      error: null,
     };
   }
 
@@ -27,7 +29,9 @@ export default class LoginProvider extends React.Component {
           let token = response.text;
           this.verifyToken(token)
         })
-        .catch(error => console.log(error));
+        .catch(error => { 
+          this.setState({error});
+        });
   }
 
   logout = () => {
@@ -38,16 +42,18 @@ export default class LoginProvider extends React.Component {
     try {
       let user = jwt.decode(token);
       this.setLoginState(token, user);
-      console.log('Logged in:', user)
     } catch(error) {
       this.logout();
-      console.log(error);
     }
   }
 
   setLoginState = (token, user) => {
     this.setState({token, user});
     token ? cookie.save('auth', token) : cookie.remove('auth');
+  }
+
+  clearError = () => {
+    this.setState({error: null});
   }
 
   componentDidMount() {
