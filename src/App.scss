@@ -22,3 +22,15 @@ div.cards {
     margin: 10px;
   }
 }
+
+.btn-primary {
+  background-color: #fff !important;
+  color: rgb(255, 145, 0) !important;
+  border-color: rgb(255, 145, 0) !important;
+
+  &:hover {
+    background-color: rgb(255, 145, 0) !important;
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+}

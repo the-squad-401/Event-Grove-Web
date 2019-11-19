@@ -1,7 +1,21 @@
 div.carousel {
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 350px;
+  max-height: 350px;
   overflow: hidden;
   text-align: center;
   background-color: #333;
+
+  & div.carousel-inner {
+    & div.carousel-item {
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+
+      & > div {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 350px;
+      }
+    }
+  }
 }
