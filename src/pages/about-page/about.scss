@@ -1,0 +1,10 @@
+#about-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+    & * {
+      max-width: 20vw;
+      margin: 10px;
+    }
+}
