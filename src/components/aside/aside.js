@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import superagent from 'superagent';
-import cookie from 'react-cookies';
 
 import Auth from '../auth/auth';
 import LoginContext from '../auth/login-context';
@@ -16,7 +15,6 @@ export default function Aside(props) {
 
   useEffect(() => {
     if(context.user) {
-
       superagent
         .get(``)
     }
