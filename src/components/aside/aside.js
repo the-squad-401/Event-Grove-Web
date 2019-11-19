@@ -25,7 +25,6 @@ export default function Aside(props) {
   return (
     <aside id="aside">
       <Link to="/home">Home</Link>
-      <Link to="/login">Login</Link>
       <Link to="/businesses">Businesses</Link>
       <Link to="/events">Events</Link>
       <Auth>
