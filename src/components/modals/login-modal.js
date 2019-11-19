@@ -4,21 +4,26 @@ import LoginContext from '../auth/login-context';
 
 
 export default function LoginModal(props) {
+  const context = useContext(LoginContext);
   const [show, setShow] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    context.clearError();
+  }
+
   const handleShow = () => setShow(true);
-  const context = useContext(LoginContext);
 
   let handleSubmit = async e => {
     e.preventDefault();
 
-    console.log(username, password);
-    context.login(username, password);
-
-    console.log(context.user);
+    await context.login(username, password);
+   
+    if(context.error) {
+      console.log(context.error);
+    }
   }
   
   return (
@@ -36,6 +41,7 @@ export default function LoginModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={e => handleSubmit(e)}>
+            { context.error ? <p>Incorrect Username or Password</p> : <></>}
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
               <Form.Control type="username" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
