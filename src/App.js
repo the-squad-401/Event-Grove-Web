@@ -9,6 +9,7 @@ import Header from './components/header/header';
 import Aside from './components/aside/aside';
 import Footer from './components/footer/footer';
 import Business from './pages/business-page/business'
+import Subscriptions from './pages/subscriptions-page/subscriptions';
 export default function App(props) {
   const context = useContext(LoginContext);
 
@@ -22,6 +23,7 @@ export default function App(props) {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/businesses" component={Businesses} />
+            <Route path="/subscriptions" component={Subscriptions} />
             <Route path="/" component={Home} />
             <Route path="/businesses/:id" component={Business} />
           </Switch>
