@@ -1,12 +1,31 @@
 div.carousel {
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 350px;
+  max-height: 350px;
   overflow: hidden;
   text-align: center;
   background-color: #333;
 
-  & * {
-    overflow: hidden;
-    max-width: 100%;
+  & div.carousel-inner {
+    width: 100%;
+    min-height: 350px;
+    max-height: 350px;
+
+    & div.carousel-item {
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+      min-height: 350px;
+      max-height: 350px;
+
+      & > * {
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 350px !important;
+        height: 350px !important;
+        max-height: 350px !important;
+        width: 100% !important;
+        cursor: pointer;
+      }
+    }
   }
 }

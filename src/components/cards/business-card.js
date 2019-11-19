@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function BusinessCard(props) {
   const { business } = props;
@@ -11,7 +12,7 @@ export default function BusinessCard(props) {
         <Card.Title>{business.name}</Card.Title>
         <Card.Text>{business.description}</Card.Text>
         <Card.Text>{business.category}</Card.Text>
-        <Button variant="primary">Details</Button>
+        <Link className="btn btn-primary" to={`/business/${business._id}`}>Details</Link>
       </Card.Body>
     </Card>
   )

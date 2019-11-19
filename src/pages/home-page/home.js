@@ -33,7 +33,7 @@ export default function Home() {
         setBusinesses(response.body.results);
         setFeaturedBusinesses(selectRandom(response.body.results).map(business => ({
           src: business.bannerImage,
-          alt: business.name,
+          id: business._id,
         })));
       })
       .catch(console.error);
