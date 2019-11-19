@@ -29,6 +29,7 @@ export default function Business(props) {
     superagent
       .get(`${URL}/events/${props.match.params.id}`)
         .then(response => {
+          console.log(response.body)
           setEvents(response.body.results)
         })
         .catch(error => console.log(error))
@@ -44,13 +45,13 @@ export default function Business(props) {
   return business ? (
   <>
   <section>
-    <Button>Subscribe</Button>
+    
     <section>
       <BizCar images={gallery} />
     </section>
-
+    <Button>Subscribe</Button>
     <div className="businessInfo">
-      <ul>Business Name: {business.name} </ul>
+      <ul><h1> {business.name} </h1></ul>
       <ul>Category: {business.category}</ul>
       <ul>Address: {business.address}</ul>
       <ul>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</ul>
