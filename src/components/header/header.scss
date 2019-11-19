@@ -3,18 +3,6 @@ header > nav {
   background-color: #00447c !important;
 }
 
-header > nav > form > button {
-  background-color: #fff !important;
-  color: rgb(255, 145, 0) !important;
-  border-color: rgb(255, 145, 0) !important;
-
-  &:hover {
-    background-color: rgb(255, 145, 0) !important;
-    color: #fff !important;
-    border-color: #fff !important;
-  }
-}
-
 header > nav > a:first-child {
   transform: scale(2.5);
   margin-left: 80px;

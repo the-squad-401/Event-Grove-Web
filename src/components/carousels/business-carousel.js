@@ -11,11 +11,9 @@ export default function BussinessCarousel(props) {
         props.images.map(({src, alt}) => {
           return (
             <Carousel.Item>
-              <img
-                className="carousel-card"
-                src={src}
-                alt={alt}
-              />
+              <div className="carousel-card" style={{backgroundImage: `url(${src})`}}>
+
+              </div>
             </Carousel.Item>
           )
         })
