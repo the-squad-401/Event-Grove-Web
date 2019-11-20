@@ -9,6 +9,7 @@ const URL = process.env.REACT_APP_API
 export default function Subscriptions() {
   const context = useContext(LoginContext);
   const [subscriptions, setSubscriptions] = useState([]);
+  const [subsEvents, setSubsEvents] = useState([]);
 
   useEffect(() => {
     superagent
@@ -20,10 +21,14 @@ export default function Subscriptions() {
             superagent
               .get(`${URL}/business/${businesses[i]}`)
                 .then(res => {
-                  setSubscriptions(b => [...b, res.body]);
+                  setSubscriptions(bus => [...bus, res.body]);
                 })
-          }
-        })
+            superagent
+              .get(`${URL}/events/business/${businesses[i]}`)
+                .then(res => {
+                  setSubsEvents(events => [...events, res.body]);
+                })
+          }})
   }, [context.token]);
 
   if(!context.user) {
@@ -33,7 +38,7 @@ export default function Subscriptions() {
   } else {
     return (
       <section>
-        {subscriptions.map(business => <Card business={business} />)}
+        {subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
       </section>
     )
   }
