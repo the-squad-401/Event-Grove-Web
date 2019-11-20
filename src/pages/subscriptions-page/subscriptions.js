@@ -12,24 +12,31 @@ export default function Subscriptions() {
   const [subsEvents, setSubsEvents] = useState([]);
 
   useEffect(() => {
-    superagent
-      .get(`${URL}/user`)
-      .set('Authorization', `Bearer ${context.token}`)
-        .then(res => {
-          let businesses = res.body.subscriptions; 
-          for(let i = 0; i < businesses.length; i++) {
-            superagent
-              .get(`${URL}/business/${businesses[i]}`)
-                .then(res => {
-                  setSubscriptions(bus => [...bus, res.body]);
-                })
-            superagent
-              .get(`${URL}/events/business/${businesses[i]}`)
-                .then(res => {
-                  setSubsEvents(events => [...events, res.body]);
-                })
-          }})
-  }, [context.token]);
+    let subs = [];
+    let events = [];
+
+    if(context.token) {
+      superagent
+        .get(`${URL}/user`)
+        .set('Authorization', `Bearer ${context.token}`)
+          .then(res => {
+            let businesses = res.body.subscriptions;
+            return Promise.all(businesses.map(async (business) => {
+              subs.push(await superagent
+                .get(`${URL}/business/${business}`)
+                  .then(res => res.body));
+              events.push(await superagent
+                .get(`${URL}/events/business/${business}`)
+                  .then(res => res.body))
+            }));
+          })
+            .then(() => {
+              console.log(subs, events);
+              setSubsEvents(events);
+              setSubscriptions(subs);
+            })
+    }
+  }, [context]);
 
   if(!context.user) {
     return (

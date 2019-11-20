@@ -3,8 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 
 import EventCarousel from '../carousels/event-carousel';
 
-const URL = process.env.REACT_APP_API;
-
 export default function BusinessCard(props) {
   const { business, events } = props;
 
