@@ -43,7 +43,7 @@ export default function BusinessCard(props) {
         <Card.Text>{business.category}</Card.Text>
         <section className='btns'>
           <Link className="btn btn-primary" to={`/business/${business._id}`}>Details</Link>
-          {context.user ? <button className="btn btn-primary" onClick={subbed ? unsubscribe : subscribe}>{subbed ? <FontAwesomeIcon icon={faMinusCircle} /> : <FontAwesomeIcon icon={faPlusCircle} />}</button> : null}
+          {context.user ? <button className="subscribe btn btn-primary" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'Unsubscribe' : 'Subscribe'}</button> : null}
         </section>
       </Card.Body>
     </Card>
