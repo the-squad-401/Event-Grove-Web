@@ -30,7 +30,7 @@ export default function Aside(props) {
   }, [context]);
 
   return (
-    <aside id="aside" style={props.style}>
+    <aside id="aside">
       <Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link>
       <Link to="/businesses"><FontAwesomeIcon icon={faBuilding} /> Businesses</Link>
       <Link to="/events"><FontAwesomeIcon icon={faCalendarAlt} /> Events</Link>
