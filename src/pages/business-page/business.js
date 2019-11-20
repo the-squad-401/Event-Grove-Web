@@ -38,7 +38,7 @@ export default function Business(props) {
   useEffect(() => {
     fetchBusiness();
     fetchEvents();
-  }, []);
+  }, [props.match.params.id]);
 
   console.log(business);
   console.log(events);
