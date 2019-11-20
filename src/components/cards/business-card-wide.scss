@@ -3,7 +3,7 @@
   height: 200px;
   padding: 10px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 30% auto 60%;
   grid-template-rows: 50% 50%;
 }
 
@@ -17,8 +17,8 @@
 }
 
 .rightDiv {
-  grid-column-start: 2;
-  grid-column-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 3;
 
