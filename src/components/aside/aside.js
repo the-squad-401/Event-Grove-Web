@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import superagent from 'superagent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faBuilding, faCalendarAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Auth from '../auth/auth';
 import LoginContext from '../auth/login-context';
@@ -29,10 +31,10 @@ export default function Aside(props) {
 
   return (
     <aside id="aside">
-      <Link to="/home">Home</Link>
-      <Link to="/businesses">Businesses</Link>
-      <Link to="/events">Events</Link>
-      <Link to="/about">About</Link>
+      <Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link>
+      <Link to="/businesses"><FontAwesomeIcon icon={faBuilding} /> Businesses</Link>
+      <Link to="/events"><FontAwesomeIcon icon={faCalendarAlt} /> Events</Link>
+      <Link to="/about"><FontAwesomeIcon icon={faQuestionCircle} /> About</Link>
       <Auth>
         <Link to="/subscriptions">Subscriptions</Link>
         <hr></hr>
