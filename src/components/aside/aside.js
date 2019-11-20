@@ -31,12 +31,12 @@ export default function Aside(props) {
 
   return (
     <aside id="aside">
-      <Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link>
-      <Link to="/businesses"><FontAwesomeIcon icon={faBuilding} /> Businesses</Link>
-      <Link to="/events"><FontAwesomeIcon icon={faCalendarAlt} /> Events</Link>
-      <Link to="/about"><FontAwesomeIcon icon={faQuestionCircle} /> About</Link>
+      <Link to="/home">Home <FontAwesomeIcon icon={faHome} /></Link>
+      <Link to="/businesses">Businesses <FontAwesomeIcon icon={faBuilding} /></Link>
+      <Link to="/events">Events <FontAwesomeIcon icon={faCalendarAlt} /></Link>
+      <Link to="/about">About <FontAwesomeIcon icon={faQuestionCircle} /></Link>
       <Auth>
-        <Link to="/subscriptions"><FontAwesomeIcon icon={faCheckSquare} /> Subscriptions</Link>
+        <Link to="/subscriptions">Subscriptions <FontAwesomeIcon icon={faCheckSquare} /></Link>
         <hr></hr>
         {subscriptions.map(sub => <Link key={sub.id} to={`/business/${sub.id}`}>{sub.business.name}</Link>)}
       </Auth>
