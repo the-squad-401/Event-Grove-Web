@@ -1,9 +1,15 @@
 header > nav {
   justify-content: space-between !important;
   background-color: #00447c !important;
+
+  & > a:first-child {
+    transform: scale(2.5);
+    margin-left: 80px;
+  }
+
+  & > form > input[type='text'] {
+    width: 25vw !important;
+  }
 }
 
-header > nav > a:first-child {
-  transform: scale(2.5);
-  margin-left: 80px;
-}
+//@media only screen and (max-width: )

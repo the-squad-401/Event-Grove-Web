@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoginContext from '../auth/login-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
 import superagent from 'superagent';
 
