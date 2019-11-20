@@ -101,7 +101,7 @@ export default function Business(props) {
       </ul>
     </div>
     <div className='cards'>
-        {events.map(event => <EventCard event={event} />)}
+        {events.map(event => <EventCard key={event._id} event={event} />)}
     </div>
   </section>
 
