@@ -46,6 +46,10 @@ div.cards {
   & > * {
     margin: 10px;
   }
+  
+  .card-img-top {
+    height: 256px;
+  }
 }
 
 .btn-primary {
