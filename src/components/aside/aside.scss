@@ -2,6 +2,9 @@
   background-color: #666;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  
+  direction: rtl;
 
   > *:not(hr) {
     color: #fff;
