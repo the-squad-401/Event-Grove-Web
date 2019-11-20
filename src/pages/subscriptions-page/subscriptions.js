@@ -3,6 +3,7 @@ import superagent from 'superagent';
 
 import Card from '../../components/cards/business-card-wide';
 import LoginContext from '../../components/auth/login-context';
+import './subscriptions-page.scss';
 
 const URL = process.env.REACT_APP_API
 

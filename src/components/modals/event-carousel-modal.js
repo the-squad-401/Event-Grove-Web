@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 
 export default function EventModal(props) {
   const { event, show, handleClose } = props;
