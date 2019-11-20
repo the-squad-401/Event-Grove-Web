@@ -34,17 +34,31 @@
 }
 
 div.cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
   padding: 10px;
+  justify-content: space-around;
   // display: flex;
   // flex-direction: row;
   // flex-wrap: wrap;
   // flex-basis: 1;
   // justify-content: left;
   // align-content: space-between;
-  & > * {
+  & > .card {
     margin: 10px;
+    width: 350px;
+
+    & > .card-body{
+      display: flex;
+      flex-direction: column;
+      align-content: flex-start;
+      justify-content: flex-start;
+      & > *:last-child {
+        margin-top: auto;
+      }
+    }
   }
   
   .card-img-top {
@@ -62,6 +76,12 @@ div.cards {
     color: #fff !important;
     border-color: #fff !important;
   }
+}
+
+section.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 button.subscribe {
