@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-import EventCarousel from '../carousels/business-carousel';
+import EventCarousel from '../carousels/event-carousel';
 
 export default function BusinessCard(props) {
-  const { business } = props;
+  const { business, events } = props;
 
   return (
     <Card>
@@ -14,7 +14,7 @@ export default function BusinessCard(props) {
       </div>
       <div className="floatRight">
         <EventCarousel 
-          images={[]}
+          events={events}
         />
       </div>
     </Card>
