@@ -19,13 +19,11 @@ export default function EventCarousel(props) {
       {
         events.map((event) => {
           return (
-            <>
-              <Carousel.Item key={event.image}>
-                <div className="carousel-card" style={{backgroundImage: `url(https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg`} } onClick={ handleShow }>
-                </div>
-              </Carousel.Item>
+            <Carousel.Item key={event.image}>
+              <div className="carousel-card" style={{backgroundImage: `url(https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg`} } onClick={ handleShow }>
+              </div>
               <EventModal event={event} handleClose={handleClose} show={show}/>
-            </>
+            </Carousel.Item>
           )
         })
       }
