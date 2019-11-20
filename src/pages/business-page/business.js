@@ -27,10 +27,10 @@ export default function Business(props) {
 
   const fetchEvents = () => {
     superagent
-      .get(`${URL}/events/${props.match.params.id}`)
+      .get(`${URL}/events/business/${props.match.params.id}`)
         .then(response => {
           console.log(response.body)
-          setEvents(response.body.results)
+          setEvents(response.body)
         })
         .catch(error => console.log(error))
   }
@@ -41,6 +41,7 @@ export default function Business(props) {
   }, []);
 
   console.log(business);
+  console.log(events);
 
   return business ? (
   <>
@@ -60,7 +61,7 @@ export default function Business(props) {
     </div>
     <div className='cards'>
         {events.map(event => <EventCard event={event} />)}
-      </div>
+    </div>
   </section>
 
   </>
