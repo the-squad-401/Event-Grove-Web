@@ -48,7 +48,7 @@ export default function Business(props) {
       fetchBusiness(await fetchCategories());
     })()
     fetchEvents();
-  }, []);
+  }, [props.match.params.id]);
 
 
   return business ? (
