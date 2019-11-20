@@ -1,0 +1,40 @@
+.cardWide {
+  margin: 10px;
+  height: 200px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 50% 50%;
+}
+
+.leftDiv {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.rightDiv {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+}
+
+.subCardTitle {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  text-align: center;
+  margin-top: 15%;
+}
+
+.unsubBtn {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  width: 80%;
+  height: 50%;
+  margin: auto;
+}
