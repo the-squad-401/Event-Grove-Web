@@ -8,6 +8,9 @@ import BusinessCard from '../../components/cards/business-card';
 
 const URL = process.env.REACT_APP_API;
 
+/* Banjo was here
+*/
+
 export default function BusinessPage() {
   const context = useContext(LoginContext); 
   const [businesses, setBusinesses] = useState([]);
@@ -51,7 +54,6 @@ export default function BusinessPage() {
     })();
   }, [context.token]);
 
-  console.log(subscriptions);
   return (
     <section>
       <div className='cards'>

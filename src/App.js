@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import './App.scss';
@@ -11,16 +11,18 @@ import Footer from './components/footer/footer';
 import Business from './pages/business-page/business'
 import Subscriptions from './pages/subscriptions-page/subscriptions';
 import About from './pages/about-page/about';
+
 export default function App(props) {
   const context = useContext(LoginContext);
 
+  const [scroll, setScroll] = useState(0);
+  
   return (
     <>
       <div className="App">
         <Header />
-        <section id="content">
-
-          <Aside />
+        <section id="content" onScroll={e => setScroll(e.target.scrollTop)}>
+          <Aside style={{transform: `translateY(${scroll}px)`}} />
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/about" component={About} />
