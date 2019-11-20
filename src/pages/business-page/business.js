@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 import {Button} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
 import BizCar from '../../components/carousels/business-carousel';
 import EventCard from '../../components/cards/event-card';
@@ -92,10 +94,11 @@ export default function Business(props) {
     </section>
     <div>
     <h1 className="bizTitle"> {business.name} </h1>
-    <Button id="subButton" onCpck={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+    <Button id="subButton" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
     </div>
     <div className="businessInfo">
       <p>Category: {business.category}</p>
+      <p>Description: {business.description}</p>
       <p>Address: {business.address}</p>
       <p>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</p>
       <p>Hours: {business.hours.map(day => <span> {day.open}</span>)}-{business.hours.map(day => <span> {day.close}</span>)}</p>
