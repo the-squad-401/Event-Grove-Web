@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 
+import LoginContext from '../../components/auth/login-context';
 import BusinessCard from '../../components/cards/business-card';
+
+//.set('Authorization', `Bearer ${context.token}`)
 
 const URL = process.env.REACT_APP_API;
 
 export default function BusinessPage() {
+  const context = useContext(LoginContext); 
   const [businesses, setBusinesses] = useState([]);
+  const [subscriptions, setSubscriptions] = useState({});
+
+  const fetchSubscriptions = async () => {
+    if (!context.token) return;
+    await superagent
+      .get(`${URL}/user`)
+      .set('Authorization', `Bearer ${context.token}`)
+      .then(results => setSubscriptions(results.body.subscriptions.reduce((subs, sub) => ({...subs, [sub]: true}), {})))
+      .catch(console.error);
+  };
 
   const fetchBusinesses = async (categories) => {
-    console.log(categories);
     await superagent
       .get(`${URL}/businesses`)
       .then(response => {
@@ -32,11 +45,17 @@ export default function BusinessPage() {
     })();
   }, []);
 
-  console.log('Rendering business');
+  useEffect(() => {
+    (async () => {
+      await fetchSubscriptions();
+    })();
+  }, [context.token]);
+
+  console.log(subscriptions);
   return (
     <section>
       <div className='cards'>
-        {businesses.map(business => <BusinessCard key={business._id} business={ business } />)}
+        {businesses.map(business => <BusinessCard key={business._id} business={ business } subscribed={subscriptions[business._id]} />)}
       </div>
     </section>
   );
