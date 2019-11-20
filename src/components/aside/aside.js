@@ -27,10 +27,10 @@ export default function Aside(props) {
       const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body}))));
       setSubscriptions(subscriptions);
     })();
-  }, [context])
+  }, [context]);
 
   return (
-    <aside id="aside">
+    <aside id="aside" style={props.style}>
       <Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link>
       <Link to="/businesses"><FontAwesomeIcon icon={faBuilding} /> Businesses</Link>
       <Link to="/events"><FontAwesomeIcon icon={faCalendarAlt} /> Events</Link>
