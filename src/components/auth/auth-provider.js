@@ -16,6 +16,7 @@ export default class LoginProvider extends React.Component {
       user: null,
       login: this.login,
       logout: this.logout,
+      register: this.register,
       clearError: this.clearError,
       error: null,
     };
@@ -32,6 +33,23 @@ export default class LoginProvider extends React.Component {
         .catch(error => { 
           this.setState({error});
         });
+  }
+
+  register = (username, password, email, phone) => {
+    return superagent
+      .post(`${URL}/signup`)
+      .send({
+        username,
+        password,
+        email,
+        phone,
+      })
+        .then(res => {
+          return res.text;
+        })
+        .catch(error => {
+          this.setState({error});
+        })
   }
 
   logout = () => {
