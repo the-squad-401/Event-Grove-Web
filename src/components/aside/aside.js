@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import superagent from 'superagent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faBuilding, faCalendarAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faBuilding, faCalendarAlt, faQuestionCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons'
 
 import Auth from '../auth/auth';
 import LoginContext from '../auth/login-context';
@@ -36,7 +36,7 @@ export default function Aside(props) {
       <Link to="/events"><FontAwesomeIcon icon={faCalendarAlt} /> Events</Link>
       <Link to="/about"><FontAwesomeIcon icon={faQuestionCircle} /> About</Link>
       <Auth>
-        <Link to="/subscriptions">Subscriptions</Link>
+        <Link to="/subscriptions"><FontAwesomeIcon icon={faCheckSquare} /> Subscriptions</Link>
         <hr></hr>
         {subscriptions.map(sub => <Link key={sub.id} to={`/business/${sub.id}`}>{sub.business.name}</Link>)}
       </Auth>
