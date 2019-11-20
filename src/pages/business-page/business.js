@@ -13,35 +13,43 @@ export default function Business(props) {
   const [business, setBusiness] = useState(null);
   const [events, setEvents] = useState([]);
 
-  const fetchBusiness = () => {
-    superagent
+  const fetchBusiness = async (categories) => {
+    console.log(categories);
+    await superagent
       .get(`${URL}/business/${props.match.params.id}`)
         .then(response => {
-          setBusiness(response.body)
-          setGallery(response.body.gallery.map(img => ({
+          const business = response.body;
+          business.category = categories[business.category];
+          setBusiness(business)
+          setGallery(business.gallery.map(img => ({
             src: img,
           })))
         })
         .catch(error => console.log(error))
   }
 
-  const fetchEvents = () => {
-    superagent
+  const fetchEvents = async () => {
+     await superagent
       .get(`${URL}/events/business/${props.match.params.id}`)
         .then(response => {
-          console.log(response.body)
           setEvents(response.body)
         })
         .catch(error => console.log(error))
   }
+  const fetchCategories = async () => {
+    return await superagent
+      .get(`${URL}/categories`)
+      .then(response => response.body.results.reduce((map, category) => ({...map, [category._id]: category.name}), {}))
+      .catch(console.error);
+  }
 
   useEffect(() => {
-    fetchBusiness();
+    (async function fetchData() {
+      fetchBusiness(await fetchCategories());
+    })()
     fetchEvents();
   }, []);
 
-  console.log(business);
-  console.log(events);
 
   return business ? (
   <>
