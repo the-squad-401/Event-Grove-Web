@@ -45,6 +45,7 @@ export default function Business(props) {
       .then(response => response.body.results.reduce((map, category) => ({...map, [category._id]: category.name}), {}))
       .catch(console.error);
   }
+
   const fetchSubscription = async () => {
     if(!context.token) return;
       await superagent
@@ -76,10 +77,10 @@ export default function Business(props) {
 
   }, [props.match.params.id]);
 
+
   useEffect(() => {
     fetchSubscription();
   }, [context.token]);
-
 
 
   return business ? (

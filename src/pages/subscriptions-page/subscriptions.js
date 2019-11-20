@@ -9,22 +9,34 @@ const URL = process.env.REACT_APP_API
 export default function Subscriptions() {
   const context = useContext(LoginContext);
   const [subscriptions, setSubscriptions] = useState([]);
+  const [subsEvents, setSubsEvents] = useState([]);
 
   useEffect(() => {
-    superagent
-      .get(`${URL}/user`)
-      .set('Authorization', `Bearer ${context.token}`)
-        .then(res => {
-          let businesses = res.body.subscriptions; 
-          for(let i = 0; i < businesses.length; i++) {
-            superagent
-              .get(`${URL}/business/${businesses[i]}`)
-                .then(res => {
-                  setSubscriptions(b => [...b, res.body]);
-                })
-          }
-        })
-  }, [context.token]);
+    let subs = [];
+    let events = [];
+
+    if(context.token) {
+      superagent
+        .get(`${URL}/user`)
+        .set('Authorization', `Bearer ${context.token}`)
+          .then(res => {
+            let businesses = res.body.subscriptions;
+            return Promise.all(businesses.map(async (business) => {
+              subs.push(await superagent
+                .get(`${URL}/business/${business}`)
+                  .then(res => res.body));
+              events.push(await superagent
+                .get(`${URL}/events/business/${business}`)
+                  .then(res => res.body))
+            }));
+          })
+            .then(() => {
+              console.log(subs, events);
+              setSubsEvents(events);
+              setSubscriptions(subs);
+            })
+    }
+  }, [context]);
 
   if(!context.user) {
     return (
@@ -33,7 +45,7 @@ export default function Subscriptions() {
   } else {
     return (
       <section>
-        {subscriptions.map(business => <Card business={business} />)}
+        {subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
       </section>
     )
   }
