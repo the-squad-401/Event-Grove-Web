@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap';
 import BizCar from '../../components/carousels/business-carousel';
 import EventCard from '../../components/cards/event-card';
 import LoginContext from '../../components/auth/login-context';
-
+import './business.scss'
 const URL = process.env.REACT_APP_API;
 
 export default function Business(props) {
@@ -90,15 +90,16 @@ export default function Business(props) {
     <section>
       <BizCar images={gallery} />
     </section>
-    <Button className="subButton" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+    <div>
+    <h1 className="bizTitle"> {business.name} </h1>
+    <Button id="subButton" onCpck={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+    </div>
     <div className="businessInfo">
-      <ul><h1> {business.name} </h1>
-      <li>Category: {business.category}</li>
-      <li>Address: {business.address}</li>
-      <li>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</li>
-      <li>Hours: {business.hours.map(day => <span> {day.open}</span>)}-{business.hours.map(day => <span> {day.close}</span>)}</li>
-      <li>Website: {business.externalUrl}</li>
-      </ul>
+      <p>Category: {business.category}</p>
+      <p>Address: {business.address}</p>
+      <p>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</p>
+      <p>Hours: {business.hours.map(day => <span> {day.open}</span>)}-{business.hours.map(day => <span> {day.close}</span>)}</p>
+      <p>Website: {business.externalUrl}</p>
     </div>
     <div className='cards'>
         {events.map(event => <EventCard key={event._id} event={event} />)}
