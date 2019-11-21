@@ -14,7 +14,7 @@ export default function EventCard(props) {
       <Card.Img variant="top" src={event.image}></Card.Img>
       <Card.Body>
         <Card.Title>{event.name}</Card.Title>
-        <Card.Text>{event.businessName || 'Unknown'}</Card.Text>
+        <Card.Text>{event.businessName || ''}</Card.Text>
         <Card.Text>Starts: {startDate.toLocaleDateString()}</Card.Text>
         <Card.Text>Ends: {endDate.toLocaleDateString()}</Card.Text>
         <EventModal event={event} />
