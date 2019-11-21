@@ -37,7 +37,7 @@ export default function BusinessCard(props) {
         {subbed ? 
           <Button className="unsubBtn" onClick={unsubscribe}>Unsubscribe</Button>
           :
-          <Button className="unsubBtn" onClick={subscribe}>Subscripe</Button>
+          <Button className="unsubBtn" onClick={subscribe}>Subscribe</Button>
         }
       </div>
       <div className="rightDiv">

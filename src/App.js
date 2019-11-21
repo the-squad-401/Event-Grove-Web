@@ -14,7 +14,6 @@ import About from './pages/about-page/about';
 import Redirector from './pages/Redirector';
 
 export default function App() {
-
   return (
     <>
       <div className="App">
