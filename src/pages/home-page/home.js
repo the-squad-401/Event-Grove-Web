@@ -8,6 +8,8 @@ import './home.scss';
 
 const URL = process.env.REACT_APP_API;
 
+
+//Locally sourced, Nail Spa, The Vinyl, Very Good Construction
 function selectRandom(items, count = 3) {
   if (count >= items.length) return items;
   const selected = [];
