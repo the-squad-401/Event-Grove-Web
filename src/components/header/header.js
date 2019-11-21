@@ -17,6 +17,7 @@ export default function Header(props){
   const go = e => {
     e.preventDefault();
     setRedirect(<Redirect to={'/redirect/search/' + query.replace(' ', '+')} />);
+    setQuery('');
   }
 
   return (
@@ -27,7 +28,7 @@ export default function Header(props){
         <Link to="/"><NavbarBrand><img src="https://files.slack.com/files-pri/T3F4FFV5F-FQGKMMNSD/eventgrove_horz.png" alt="Event Grove Logo"></img></NavbarBrand></Link>
         <div>
           <Form inline onSubmit={go}>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={e => setQuery(e.target.value)} />
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" value={query} onChange={e => setQuery(e.target.value)} />
             <Button onClick={go}>Search</Button>
           </Form>
           {context.user ? <Button onClick={context.logout}>Logout</Button>:<LoginModal>Login</LoginModal>}
