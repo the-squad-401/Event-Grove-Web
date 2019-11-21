@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 import {Button} from 'react-bootstrap';
@@ -18,7 +19,6 @@ export default function Business(props) {
   const [subbed, setSubscription] = useState(false);
 
   const fetchBusiness = async (categories) => {
-    console.log(categories);
     await superagent
       .get(`${URL}/business/${props.match.params.id}`)
         .then(response => {
