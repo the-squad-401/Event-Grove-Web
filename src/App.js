@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Home from './pages/home-page/home';
 import Businesses from './pages/businesses-page/businesses';
+import Search from './pages/businesses-page/businesses-search';
 import Header from './components/header/header';
 import Aside from './components/aside/aside';
 import Footer from './components/footer/footer';
@@ -25,7 +26,7 @@ export default function App(props) {
               <Route path="/about" component={About} />
               <Route path="/businesses" component={Businesses} />
               <Route path="/business/:id" component={Business} />
-              <Route path="/search/:query" component={Businesses} />
+              <Route path="/search/:query" component={Search} />
               <Route path="/subscriptions" component={Subscriptions} />
               <Route path="/" component={Home} />
             </Switch>

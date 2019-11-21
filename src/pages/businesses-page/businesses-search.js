@@ -11,10 +11,11 @@ const URL = process.env.REACT_APP_API;
 /* Banjo was here
 */
 
-export default function BusinessPage() {
+export default function BusinessesSearch(props) {
   const context = useContext(LoginContext); 
   const [businesses, setBusinesses] = useState([]);
   const [subscriptions, setSubscriptions] = useState({});
+  const [resultsText, setResultsText] = useState('');
 
   const fetchSubscriptions = async () => {
     if (!context.token) return;
@@ -25,14 +26,31 @@ export default function BusinessPage() {
       .catch(console.error);
   };
 
+  const filterBusinesses = businesses => {
+    if (!props.match.params.query) return businesses;
+    const queries = props.match.params.query.toLowerCase().split('+');
+    return businesses.filter(business => {
+      for (const query of queries) {
+        if (business.name.toLowerCase().includes(query)) return true;
+        if (business.description.toLowerCase().includes(query)) return true;
+        if (business.category.toLowerCase().includes(query)) return true;
+      }
+      return false;
+    })
+  }
+
   const fetchBusinesses = async (categories) => {
     await superagent
       .get(`${URL}/businesses`)
       .then(response => {
-        const businesses = response.body.results.map(business => ({...business, category: categories[business.category]}));
+        let businesses = filterBusinesses(response.body.results.map(business => ({...business, category: categories[business.category]})));
+        setResultsText('No results found');
         setBusinesses(businesses);
       })
-      .catch(console.error);
+      .catch(e => {
+        console.error(e);
+        setResultsText('No results found');
+      });
   }
 
   const fetchCategories = async () => {
@@ -44,6 +62,7 @@ export default function BusinessPage() {
 
   useEffect(() => {
     (async () => {
+      setResultsText('');
       await fetchBusinesses(await fetchCategories());
     })();
   }, []);
@@ -57,7 +76,9 @@ export default function BusinessPage() {
   return (
     <section>
       <div className='cards businesses'>
-        {businesses.map(business => <BusinessCard key={business._id} business={ business } subscribed={subscriptions[business._id]} />)}
+        {businesses.length > 0 ? 
+          businesses.map(business => <BusinessCard key={business._id} business={ business } subscribed={subscriptions[business._id]} />) :
+          <h2>{resultsText}</h2>}
       </div>
     </section>
   );
