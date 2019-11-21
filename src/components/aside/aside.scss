@@ -1,5 +1,5 @@
 #aside {
-  background-color: #404756;
+  background-color: #89909F;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -17,7 +17,7 @@
     outline-color: rgb(255, 145, 0);
 
     &:not(hr):hover {
-      background-color: #00447c;
+      background-color: #3E6990;
       outline: 1px solid rgb(255, 145, 0);
     }
   }
