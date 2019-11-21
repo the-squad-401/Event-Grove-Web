@@ -6,13 +6,16 @@ import EventModal from '../modals/event-modal';
 export default function EventCard(props) {
   const { event } = props;
 
+  const startDate = new Date(event.startDate);
+  const endDate = new Date(event.endDate);
+
   return (
     <Card>
       <Card.Img variant="top" src={event.image}></Card.Img>
       <Card.Body>
         <Card.Title>{event.name}</Card.Title>
-        <Card.Text>Starts: {new Date(event.startDate)}</Card.Text>
-        <Card.Text>Ends: {new Date(event.endDate)}</Card.Text>
+        <Card.Text>Starts: {startDate.toLocaleDateString() + ", " + startDate.toLocaleTimeString()}</Card.Text>
+        <Card.Text>Ends: {endDate.toLocaleDateString() + ", " + endDate.toLocaleTimeString()}</Card.Text>
         <EventModal event={event} />
       </Card.Body>
     </Card>
