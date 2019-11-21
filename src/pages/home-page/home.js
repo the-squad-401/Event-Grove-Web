@@ -8,6 +8,8 @@ import './home.scss';
 
 const URL = process.env.REACT_APP_API;
 
+
+//Locally sourced, Nail Spa, The Vinyl, Very Good Construction
 function selectRandom(items, count = 3) {
   if (count >= items.length) return items;
   const selected = [];
@@ -37,15 +39,11 @@ export default function Home() {
   }
 
   const fetchEvents = async (businesses) => {
-    console.log('starting');
     return await superagent
       .get(`${URL}/events`)
         .then(response => {
-          console.log(response.body);
           const events = response.body.results.map(event => {
-            console.log(event);
             return {...event, businessName: businesses.find(business => {
-              console.log(business._id, event.business)
               return business._id === event.business
             }).name};
           });

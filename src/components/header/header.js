@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Navbar, NavbarBrand, Form, FormControl, Button } from 'react-bootstrap';
 
 import LoginContext from '../auth/login-context';
@@ -12,13 +12,16 @@ export default function Header(props){
 
   const [query, setQuery] = useState('');
 
+  const [redirect, setRedirect] = useState(null);
+
   const go = e => {
     e.preventDefault();
-    window.location = '/search/' + query.replace(' ', '+');
+    setRedirect(<Redirect to={'/redirect/search/' + query.replace(' ', '+')} />);
   }
 
   return (
     <header>
+      {redirect}
       <Navbar className="navbar-horizontal"
           expand="lg">
         <Link to="/"><NavbarBrand><img src="https://files.slack.com/files-pri/T3F4FFV5F-FQGKMMNSD/eventgrove_horz.png" alt="Event Grove Logo"></img></NavbarBrand></Link>
