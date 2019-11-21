@@ -2,7 +2,6 @@ import React from 'react';
 import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
-
 import LoginContext from './login-context';
 
 const URL = process.env.REACT_APP_API;
@@ -10,7 +9,6 @@ const URL = process.env.REACT_APP_API;
 export default class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       token: null,
       user: null,
