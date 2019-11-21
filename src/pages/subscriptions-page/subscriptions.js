@@ -11,6 +11,7 @@ export default function Subscriptions() {
   const context = useContext(LoginContext);
   const [subscriptions, setSubscriptions] = useState([]);
   const [subsEvents, setSubsEvents] = useState([]);
+  const [text, setText] = useState('');
 
   useEffect(() => {
     let subs = [];
@@ -35,6 +36,7 @@ export default function Subscriptions() {
               console.log(subs, events);
               setSubsEvents(events);
               setSubscriptions(subs);
+              setText('No Subscriptions');
             })
     }
   }, [context]);
@@ -46,7 +48,7 @@ export default function Subscriptions() {
   } else {
     return (
       <section className='subsPage'>
-        { subscriptions.length === 0 ? <p className="noSubs">No Subscriptions</p> :
+        { subscriptions.length === 0 ? <p className="noSubs">{text}</p> :
         subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
       </section>
     )
