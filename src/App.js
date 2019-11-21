@@ -11,6 +11,7 @@ import Footer from './components/footer/footer';
 import Business from './pages/business-page/business'
 import Subscriptions from './pages/subscriptions-page/subscriptions';
 import About from './pages/about-page/about';
+import Redirector from './pages/Redirector';
 
 export default function App() {
 
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/business/:id" component={Business} />
               <Route path="/search/:query" component={Search} />
               <Route path="/subscriptions" component={Subscriptions} />
+              <Route path="/redirect/:path/:options" component={Redirector} />
               <Route path="/" component={Home} />
             </Switch>
           </section>
