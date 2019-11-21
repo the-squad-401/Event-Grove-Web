@@ -7,8 +7,20 @@ header > nav {
     margin-left: 80px;
   }
 
-  & > form > input[type='text'] {
+  & > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: auto;
+    overflow: hidden;
+  }
+
+  & form > input[type='text'] {
     width: 25vw !important;
+  }
+
+  & form {
+    margin-right: 8px;
   }
 }
 
