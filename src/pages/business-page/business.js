@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 import {Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Auth from '../../components/auth/auth';
+
 
 import BizCar from '../../components/carousels/business-carousel';
 import EventCard from '../../components/cards/event-card';
@@ -94,7 +96,9 @@ export default function Business(props) {
     <div id="businessDetails">
     <div>
       <h1 className="bizTitle"> {business.name} </h1>
+      <Auth>
       <Button id="subButton" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+      </Auth>
       <p id="bizDescription">{business.description}</p>
     </div>
       <div className="businessInfo">
