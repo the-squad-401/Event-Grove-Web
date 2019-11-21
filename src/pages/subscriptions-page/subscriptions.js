@@ -45,7 +45,7 @@ export default function Subscriptions() {
     )
   } else {
     return (
-      <section>
+      <section className='subsPage'>
         { subscriptions.length === 0 ? <p className="noSubs">No Subscriptions</p> :
         subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
       </section>
