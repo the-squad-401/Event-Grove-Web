@@ -39,7 +39,6 @@ export default function Home() {
     superagent
       .get(`${URL}/events`)
         .then(response => {
-          console.log(response.body);
           setEvents(response.body.results);
         })
         .catch(error => console.log(error));

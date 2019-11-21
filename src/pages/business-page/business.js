@@ -19,7 +19,6 @@ export default function Business(props) {
   const [subbed, setSubscription] = useState(false);
 
   const fetchBusiness = async (categories) => {
-    console.log(categories);
     await superagent
       .get(`${URL}/business/${props.match.params.id}`)
         .then(response => {
