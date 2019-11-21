@@ -7,9 +7,30 @@ margin-right: 25px;
 .bizTitle{
   display: inline-block;
   font-weight: bold;
-  margin-left: 25px;
+  margin-left: 20px;
+  
 };
+#bizDescription{
+  margin-left: 40px;
+}
 
-.businessInfo{
- margin-left: 25px;
+#businessDetails{
+ border: 1px solid rgb(255, 145, 0);
+ margin-left:20px;
+ margin-right:20px;
+ padding: 10px;
+ background: whitesmoke;
+ border-radius: 5px;
+ box-shadow: 1px 1px 10px #777;
+}
+
+#addHours > p{
+  margin: 2px;
+  margin-left:40px;
+  
+  
+}
+
+.descriptionSpan{
+  font-weight: bold;
 }

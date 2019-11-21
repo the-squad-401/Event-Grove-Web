@@ -5,6 +5,8 @@ div.carousel {
   text-align: center;
   background-color: #333;
   margin: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px #777;
 
   & div.carousel-inner {
     width: 100%;
