@@ -25,8 +25,8 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   const [featuredBusinesses, setFeaturedBusinesses] = useState([]);
 
-  const fetchBusinesses = () => {
-    superagent
+  const fetchBusinesses = async () => {
+    return await superagent
       .get(`${URL}/businesses`)
       .then(response => {
         //console.log(response.body);
@@ -35,24 +35,32 @@ export default function Home() {
           src: business.bannerImage,
           url: `/business/${business._id}`,
         })));
+        return response.body.results;
       })
       .catch(console.error);
   }
 
-  const fetchEvents = () => {
-    superagent
+  const fetchEvents = async (businesses) => {
+    console.log('starting');
+    return await superagent
       .get(`${URL}/events`)
         .then(response => {
           console.log(response.body);
-          setEvents(response.body.results);
+          const events = response.body.results.map(event => {
+            console.log(event);
+            return {...event, businessName: businesses.find(business => {
+              console.log(business._id, event.business)
+              return business._id === event.business
+            }).name};
+          });
+          setEvents(events);
         })
         .catch(error => console.log(error));
   }
 
   useEffect(() => {
     (async () => {
-      await fetchBusinesses();
-      await fetchEvents();
+      await fetchEvents(await fetchBusinesses());
     })();
   }, []);
 
