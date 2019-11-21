@@ -11,7 +11,7 @@ const URL = process.env.REACT_APP_API;
 /* Banjo was here
 */
 
-export default function BusinessPage() {
+export default function BusinessPage(props) {
   const context = useContext(LoginContext); 
   const [businesses, setBusinesses] = useState([]);
   const [subscriptions, setSubscriptions] = useState({});
@@ -25,11 +25,24 @@ export default function BusinessPage() {
       .catch(console.error);
   };
 
+  const filterBusinesses = businesses => {
+    if (!props.match.params.query) return businesses;
+    const queries = props.match.params.query.toLowerCase().split('+');
+    return businesses.filter(business => {
+      for (const query of queries) {
+        if (business.name.toLowerCase().includes(query)) return true;
+        if (business.description.toLowerCase().includes(query)) return true;
+        if (business.category.toLowerCase().includes(query)) return true;
+      }
+      return false;
+    })
+  }
+
   const fetchBusinesses = async (categories) => {
     await superagent
       .get(`${URL}/businesses`)
       .then(response => {
-        const businesses = response.body.results.map(business => ({...business, category: categories[business.category]}));
+        let businesses = filterBusinesses(response.body.results.map(business => ({...business, category: categories[business.category]})));
         setBusinesses(businesses);
       })
       .catch(console.error);

@@ -25,6 +25,7 @@ export default function App(props) {
               <Route path="/about" component={About} />
               <Route path="/businesses" component={Businesses} />
               <Route path="/business/:id" component={Business} />
+              <Route path="/search/:query" component={Businesses} />
               <Route path="/subscriptions" component={Subscriptions} />
               <Route path="/" component={Home} />
             </Switch>
