@@ -20,8 +20,6 @@ function selectRandom(items, count = 3) {
 }
 
 export default function Home() {
-
-  const [businesses, setBusinesses] = useState([]);
   const [events, setEvents] = useState([]);
   const [featuredBusinesses, setFeaturedBusinesses] = useState([]);
 
@@ -29,8 +27,6 @@ export default function Home() {
     return await superagent
       .get(`${URL}/businesses`)
       .then(response => {
-        //console.log(response.body);
-        setBusinesses(response.body.results);
         setFeaturedBusinesses(selectRandom(response.body.results).map(business => ({
           src: business.bannerImage,
           url: `/business/${business._id}`,

@@ -41,12 +41,13 @@ export default function Subscriptions() {
 
   if(!context.user) {
     return (
-      <h4>Must be logged in to view subscriptions. Please sign in or create an account.</h4>
+      <p className="noSubs">Must be logged in to view subscriptions. Please sign in or create an account.</p>
     )
   } else {
     return (
-      <section>
-        {subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
+      <section className='subsPage'>
+        { subscriptions.length === 0 ? <p className="noSubs">No Subscriptions</p> :
+        subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
       </section>
     )
   }
