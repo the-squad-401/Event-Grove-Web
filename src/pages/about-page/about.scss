@@ -1,14 +1,31 @@
 #about-section {
   display: block;
+  text-align: center;
+}
+
+.aboutContainer {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px #AAA;
+  padding: 5%;
+}
+
+.about-name-left {
+  margin-left: 16%;
+}
+
+.about-name-right {
+  margin-left: 64%;
+}
+
+.about-event-img {
   width: 100%;
   text-align: center;
 }
 
-.container {
-  background-image: url('https://www.designbolts.com/wp-content/uploads/2012/12/Triangle-White-Seamless-Patterns.jpg');
-  margin: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px #AAA;
-  width: 100%;
-  padding: 20px;
+.about-row {
+  margin-bottom: 5%;
 }
