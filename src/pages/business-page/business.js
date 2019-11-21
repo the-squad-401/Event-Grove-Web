@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 import {Button} from 'react-bootstrap';
