@@ -15,6 +15,7 @@ export default function BusinessPage(props) {
   const context = useContext(LoginContext); 
   const [businesses, setBusinesses] = useState([]);
   const [subscriptions, setSubscriptions] = useState({});
+  const [resultsText, setResultsText] = useState('');
 
   const fetchSubscriptions = async () => {
     if (!context.token) return;
@@ -43,9 +44,13 @@ export default function BusinessPage(props) {
       .get(`${URL}/businesses`)
       .then(response => {
         let businesses = filterBusinesses(response.body.results.map(business => ({...business, category: categories[business.category]})));
+        setResultsText('No results found');
         setBusinesses(businesses);
       })
-      .catch(console.error);
+      .catch(e => {
+        console.error(e);
+        setResultsText('No results found');
+      });
   }
 
   const fetchCategories = async () => {
@@ -57,6 +62,7 @@ export default function BusinessPage(props) {
 
   useEffect(() => {
     (async () => {
+      setResultsText('');
       await fetchBusinesses(await fetchCategories());
     })();
   }, []);
@@ -70,7 +76,9 @@ export default function BusinessPage(props) {
   return (
     <section>
       <div className='cards businesses'>
-        {businesses.map(business => <BusinessCard key={business._id} business={ business } subscribed={subscriptions[business._id]} />)}
+        {businesses.length > 0 ? 
+          businesses.map(business => <BusinessCard key={business._id} business={ business } subscribed={subscriptions[business._id]} />) :
+          <h2>{resultsText}</h2>}
       </div>
     </section>
   );
