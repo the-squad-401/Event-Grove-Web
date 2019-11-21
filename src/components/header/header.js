@@ -22,7 +22,7 @@ export default function Header(props){
       <Navbar className="navbar-horizontal"
           expand="lg">
         <Link to="/"><NavbarBrand><img src="https://files.slack.com/files-pri/T3F4FFV5F-FQGKMMNSD/eventgrove_horz.png" alt="Event Grove Logo"></img></NavbarBrand></Link>
-        <Form inline onSubmit={go}>
+        <Form inline onSubmit={e => e.preventDefault()}>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={e => setQuery(e.target.value)} />
           <Button onClick={go}>Search</Button>
           {context.user ? <Button onClick={context.logout}>Logout</Button>:<LoginModal>Login</LoginModal>}
