@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import './App.scss';
@@ -12,7 +12,7 @@ import Business from './pages/business-page/business'
 import Subscriptions from './pages/subscriptions-page/subscriptions';
 import About from './pages/about-page/about';
 
-export default function App(props) {
+export default function App() {
 
   return (
     <>
