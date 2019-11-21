@@ -7,6 +7,9 @@ export default function EventModal(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const startDate = new Date(event.startDate);
+  const endDate = new Date(event.endDate);
   
   return (
     <>
@@ -26,7 +29,7 @@ export default function EventModal(props) {
         <Modal.Body>
           <img src={event.image} alt={`${event.name}`} />
           <p>Description: {event.description}</p>
-          <p>Time: {event.startDate} - {event.endDate}</p>
+          <p>Time: {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
         </Modal.Body>
       </Modal>
     </>
