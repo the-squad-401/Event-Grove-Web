@@ -31,9 +31,10 @@ export default function EventModal(props) {
         <Modal.Body>
 
           <div className="centerDis">
+          
           <img className="eventImg" src={event.image} alt={`${event.name}`} />
-            <p>{event.description}</p>
-            <p>Time: {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
+            <p><span className="boldSpan">Description: </span>{event.description}</p>
+            <p><span className="boldSpan">Date: </span>{startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
             {event.businessName ? 
               <Link className='btn btn-primary' to={`/business/${event.business}`}>{event.businessName}</Link> 
               :
