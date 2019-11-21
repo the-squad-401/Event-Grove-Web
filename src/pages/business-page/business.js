@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import superagent from 'superagent';
 import {Button} from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import BizCar from '../../components/carousels/business-carousel';
 import EventCard from '../../components/cards/event-card';
@@ -92,17 +91,23 @@ export default function Business(props) {
     <section>
       <BizCar images={gallery} />
     </section>
+    <div id="businessDetails">
     <div>
-    <h1 className="bizTitle"> {business.name} </h1>
-    <Button id="subButton" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+      <h1 className="bizTitle"> {business.name} </h1>
+      <Button id="subButton" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'unsubscribe' : 'subscribe'}</Button>
+      <p id="bizDescription">{business.description}</p>
     </div>
-    <div className="businessInfo">
-      <p>Category: {business.category}</p>
-      <p>Description: {business.description}</p>
-      <p>Address: {business.address}</p>
-      <p>Days Open: {business.hours.map(day=> <span> {day.day}</span>)}</p>
-      <p>Hours: {business.hours.map(day => <span> {day.open}</span>)}-{business.hours.map(day => <span> {day.close}</span>)}</p>
-      <p>Website: {business.externalUrl}</p>
+      <div className="businessInfo">
+        <div id="addHours">
+        <p><span className="descriptionSpan">Category:</span> {business.category}</p>
+        <p><span className="descriptionSpan">Address:</span> {business.address}</p>
+        <p><span className="descriptionSpan">Days Open:</span> {business.hours.map(day=> <span> {day.day}</span>)}</p>
+        <p><span className="descriptionSpan">Hours: </span>{business.hours.map(day => <span> {day.open}</span>)}-{business.hours.map(day => <span> {day.close}</span>)}</p>
+        <p><span className="descriptionSpan">Website: </span><Link to={business.externalUrl}>{business.externalUrl} </Link> </p>
+        </div>
+        
+
+      </div>
     </div>
     <div className='cards'>
         {events.map(event => <EventCard key={event._id} event={event} />)}
