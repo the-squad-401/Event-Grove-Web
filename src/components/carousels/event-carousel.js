@@ -26,7 +26,7 @@ export default function EventCarousel(props) {
         (events.map((event) => {
           return (
             <Carousel.Item key={event._id}>
-              <div className="carousel-card" style={{backgroundImage: `url(${event.image}`} } onClick={ handleShow }>
+              <div className="carousel-card" style={{backgroundImage: `url(${event.image}`, backgroundPosition: 'top center', backgroundSize: '65%'} } onClick={ handleShow }>
               </div>
               <EventModal event={event} handleClose={handleClose} show={show}/>
             </Carousel.Item>

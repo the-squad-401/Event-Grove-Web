@@ -52,7 +52,7 @@ export default function BusinessPage() {
     (async () => {
       await fetchSubscriptions();
     })();
-  }, [context.token]);
+  }, [context.token, fetchSubscriptions]);
 
   return (
     <section>

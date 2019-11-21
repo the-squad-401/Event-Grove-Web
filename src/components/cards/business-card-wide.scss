@@ -1,9 +1,10 @@
 .cardWide {
   margin: 10px;
   height: 200px;
+  width: 45%;
   padding: 10px;
   display: grid;
-  grid-template-columns: 30% auto 60%;
+  grid-template-columns: 39% auto 60%;
   grid-template-rows: 50% 50%;
 }
 

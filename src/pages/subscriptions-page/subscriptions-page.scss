@@ -1,4 +1,11 @@
-section {
+section.subsPage {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.noSubs {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 2.5rem;
 }

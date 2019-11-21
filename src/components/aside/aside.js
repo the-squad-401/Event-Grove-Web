@@ -27,7 +27,6 @@ export default function Aside(props) {
         .set('Authorization', `Bearer ${context.token}`)
         .then(response => response.body.subscriptions)
         .catch(console.error);
-      console.log(subIds);
       const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body}))));
       setSubscriptions(subscriptions);
     })();
