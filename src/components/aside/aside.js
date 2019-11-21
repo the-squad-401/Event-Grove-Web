@@ -17,17 +17,22 @@ export default function Aside(props) {
 
   useEffect(() => {
     (async() => {
-      if(!context.user) return;
+      if(!context.user) {
+        setSubscriptions([]);
+        return
+      };
 
       const subIds = await superagent
         .get(`${URL}/user`)
         .set('Authorization', `Bearer ${context.token}`)
         .then(response => response.body.subscriptions)
         .catch(console.error);
+      console.log(subIds);
       const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body}))));
       setSubscriptions(subscriptions);
     })();
-  }, [context]);
+  }, [context.user, context.token]);
+
 
   return (
     <aside id="aside">
