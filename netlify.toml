@@ -1,0 +1,7 @@
+[build.environment]
+  REACT_APP_API = "https://event-grove.herokuapp.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
