@@ -25,7 +25,7 @@ export default function Header(props){
       {redirect}
       <Navbar className="navbar-horizontal"
           expand="lg">
-        <Link to="/"><NavbarBrand><img src="https://files.slack.com/files-pri/T3F4FFV5F-FQGKMMNSD/eventgrove_horz.png" alt="Event Grove Logo"></img></NavbarBrand></Link>
+        <Link to="/"><NavbarBrand><img src="https://event-grove-assets.s3.us-east-2.amazonaws.com/eventgrove_horz.png" alt="Event Grove Logo"></img></NavbarBrand></Link>
         <div>
           <Form inline onSubmit={go}>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" value={query} onChange={e => setQuery(e.target.value)} />
