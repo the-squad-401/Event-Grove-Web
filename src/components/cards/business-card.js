@@ -3,34 +3,15 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoginContext from '../auth/login-context';
 
-import superagent from 'superagent';
-
-const URL = process.env.REACT_APP_API;
-
 export default function BusinessCard(props) {
   const context = useContext(LoginContext);  
   const { business } = props;
   const [subbed, setSubbed] = useState(false);
 
-  const subscribe = () => {
-    console.log(context);
-    superagent
-      .post(`${URL}/subscribers/business/${business._id}`)
-      .set('Authorization', `Bearer ${context.token}`)
-      .then(() => setSubbed(true))
-      .catch(console.error);
-  }
-  const unsubscribe = () => {
-    superagent
-      .delete(`${URL}/subscribers/business/${business._id}`)
-      .set('Authorization', `Bearer ${context.token}`)
-      .then(() => setSubbed(false))
-      .catch(console.error);
-  }
-
   useEffect(() => {
-    setSubbed(props.subscribed);
-  }, [props.subscribed]);
+    setSubbed(context.isSubscribed(business._id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context.subscriptions])
 
   return (
     <Card>
@@ -41,7 +22,7 @@ export default function BusinessCard(props) {
         <Card.Text>{business.category}</Card.Text>
         <section className='btns'>
           <Link className="btn btn-primary" to={`/business/${business._id}`}>Details</Link>
-          {context.user ? <button className="subscribe btn btn-primary" onClick={subbed ? unsubscribe : subscribe}>{subbed ? 'Unsubscribe' : 'Subscribe'}</button> : null}
+          {context.user ? <button className="subscribe btn btn-primary" onClick={subbed ? () => context.unsubscribe(business) : () => context.subscribe(business)}>{subbed ? 'Unsubscribe' : 'Subscribe'}</button> : null}
         </section>
       </Card.Body>
     </Card>

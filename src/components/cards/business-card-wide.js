@@ -1,44 +1,19 @@
-import React, { useState, useContext } from 'react';
-import superagent from 'superagent';
+import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import LoginContext from '../auth/login-context';
 
 import EventCarousel from '../carousels/event-carousel';
 import './business-card-wide.scss'
 
-const URL = process.env.REACT_APP_API;
-
 export default function BusinessCard(props) {
   const context = useContext(LoginContext);
-  const { business, events } = props;
-  const [subbed, setSubbed] = useState(true);
-
-  const subscribe = () => {
-    console.log(context);
-    superagent
-      .post(`${URL}/subscribers/business/${business._id}`)
-      .set('Authorization', `Bearer ${context.token}`)
-      .then(() => setSubbed(true))
-      .catch(console.error);
-  }
-
-  const unsubscribe = () => {
-    superagent
-      .delete(`${URL}/subscribers/business/${business._id}`)
-      .set('Authorization', `Bearer ${context.token}`)
-      .then(() => setSubbed(false))
-      .catch(console.error);
-  }
+  const { subscription, events } = props;
 
   return (
     <Card className="cardWide">
       <div className="leftDiv">
-        <Card.Title className="subCardTitle">{business.name}</Card.Title>
-        {subbed ? 
-          <Button className="unsubBtn" onClick={unsubscribe}>Unsubscribe</Button>
-          :
-          <Button className="unsubBtn" onClick={subscribe}>Subscribe</Button>
-        }
+        <Card.Title className="subCardTitle">{subscription.business}</Card.Title>
+        <Button className="unsubBtn" onClick={() => context.unsubscribe({_id: subscription.id})}>Unsubscribe</Button>
       </div>
       <div className="rightDiv">
         <EventCarousel 

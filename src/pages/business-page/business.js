@@ -18,7 +18,8 @@ export default function Business(props) {
   const [gallery, setGallery] = useState([]);
   const [business, setBusiness] = useState(null);
   const [events, setEvents] = useState([]);
-  const [subbed, setSubscription] = useState(false);
+
+  const [subbed, setSubbed] = useState(false);
 
   const fetchBusiness = async (categories) => {
     await superagent
@@ -49,29 +50,6 @@ export default function Business(props) {
       .catch(console.error);
   }
 
-  const fetchSubscription = async () => {
-    if(!context.token) return;
-      await superagent
-        .get(`${URL}/user`)
-        .set('Authorization', `Bearer ${context.token}`)
-        .then(results => setSubscription(results.body.subscriptions.includes(props.match.params.id)))
-        .catch(console.error);
-  }
-
-  const subscribe = () => {
-    superagent
-    .post(`${URL}/subscribers/business/${props.match.params.id}`)
-    .set(`Authorization`, `Bearer ${context.token}`)
-    .then(() => setSubscription(true))
-    .catch(console.error);
-  }
-  const unsubscribe = () => {
-    superagent
-    .delete(`${URL}/subscribers/business/${props.match.params.id}`)
-    .set(`Authorization`, `Bearer ${context.token}`)
-    .then(() => setSubscription(false))
-    .catch(console.error);
-  }
   useEffect(() => {
     (async function fetchData() {
       fetchBusiness(await fetchCategories());
@@ -80,11 +58,18 @@ export default function Business(props) {
 
   }, [props.match.params.id]);
 
-
   useEffect(() => {
-    fetchSubscription();
-  }, [context.token]);
+    if (!business) return;
+    setSubbed(context.isSubscribed(business._id));
+  }, [business, context.subscriptions]);
 
+  const subscribe = () => {
+    context.subscribe(business);
+  }
+
+  const unsubscribe = () => {
+    context.unsubscribe(business);
+  }
 
   return business ? (
   <>

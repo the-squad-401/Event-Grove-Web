@@ -17,7 +17,44 @@ export default class LoginProvider extends React.Component {
       register: this.register,
       clearError: this.clearError,
       error: null,
+      subscriptions: [],
+      isSubscribed: this.isSubscribed,
+      subscribe: this.subscribe,
+      unsubscribe: this.unsubscribe,
     };
+  }
+
+  isSubscribed = (id) => {
+    return !!this.state.subscriptions.find(sub => sub.id === id);
+  }
+
+  subscribe = (business) => {
+    superagent
+      .post(`${URL}/subscribers/business/${business._id}`)
+      .set('Authorization', `Bearer ${this.state.token}`)
+      .then(() => this.setState(state => ({...state, subscriptions: [...state.subscriptions, {id: business._id, business: business.name}]})))
+      .catch(console.error);
+  }
+
+  unsubscribe = (business) => {
+    superagent
+      .delete(`${URL}/subscribers/business/${business._id}`)
+      .set('Authorization', `Bearer ${this.state.token}`)
+      .then(() => this.setState(state => ({...state, subscriptions: state.subscriptions.filter(subscription => subscription.id !== business._id)})))
+      .catch(console.error);
+  }
+
+  fetchSubscriptions = (token) => {
+    (async () => {
+      if (!token) return;
+      const subIds = await superagent
+        .get(`${URL}/user`)
+        .set('Authorization', `Bearer ${token}`)
+        .then(response => response.body.subscriptions)
+        .catch(console.error);
+      const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body.name}))));
+      this.setState(state => ({...state, subscriptions}));
+    })();
   }
 
   login = (username, password) => {
@@ -26,7 +63,7 @@ export default class LoginProvider extends React.Component {
       .auth(username, password)
         .then(response => {
           let token = response.text;
-          this.verifyToken(token)
+          this.verifyToken(token);
         })
         .catch(error => { 
           this.setState({error});
@@ -58,6 +95,7 @@ export default class LoginProvider extends React.Component {
     try {
       let user = jwt.decode(token);
       this.setLoginState(token, user);
+      this.fetchSubscriptions(token);
     } catch(error) {
       this.logout();
     }
