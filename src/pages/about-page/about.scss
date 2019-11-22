@@ -29,3 +29,67 @@
 .about-row {
   margin-bottom: 5%;
 }
+
+.calvin-image {
+  margin-top: 60px;
+  height: 400px;
+  width: 400px;
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/CALVIN.jpg");
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.calvin-image:hover {
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/funny-CALVIN.jpg");
+}
+
+.james-image {
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/JAMES.jpg");
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.james-image:hover {
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/funny-JAMES.jpg");
+}
+
+.juicy-image {
+  height: 400px;
+  width: 400px;
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/JUICY.jpg");
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.juicy-image:hover {
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/funny-JUICY.jpg");
+}
+
+.jon-image {
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/JON.jpg");
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.jon-image:hover {
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/funny-JON.jpg");
+}
+
+.jacob-image {
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/JACOB.JPG");
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.jacob-image:hover {
+  background-image: url("https://event-grove-assets.s3.us-east-2.amazonaws.com/about-photos/funny-JACOB.JPG");
+}
