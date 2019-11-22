@@ -9,37 +9,28 @@ const URL = process.env.REACT_APP_API
 
 export default function Subscriptions() {
   const context = useContext(LoginContext);
-  const [subscriptions, setSubscriptions] = useState([]);
-  const [subsEvents, setSubsEvents] = useState([]);
+  const [subsEvents, setSubsEvents] = useState(null);
   const [text, setText] = useState('');
 
   useEffect(() => {
-    let subs = [];
-    let events = [];
+    (async () => {
+      let events = {};
+  
+      if(context.token) {
+        await Promise.all(context.subscriptions.map(async (sub) => {
+          events[sub.id] = await superagent
+            .get(`${URL}/events/business/${sub.id}`)
+              .then(res => res.body)
+        }));
+        setSubsEvents(events);
+        setText('No Subscriptions');
+      }
+    })();
+  }, [context, context.subscriptions]);
 
-    if(context.token) {
-      superagent
-        .get(`${URL}/user`)
-        .set('Authorization', `Bearer ${context.token}`)
-          .then(res => {
-            let businesses = res.body.subscriptions;
-            return Promise.all(businesses.map(async (business) => {
-              subs.push(await superagent
-                .get(`${URL}/business/${business}`)
-                  .then(res => res.body));
-              events.push(await superagent
-                .get(`${URL}/events/business/${business}`)
-                  .then(res => res.body))
-            }));
-          })
-            .then(() => {
-              console.log(subs, events);
-              setSubsEvents(events);
-              setSubscriptions(subs);
-              setText('No Subscriptions');
-            })
-    }
-  }, [context]);
+  const getCards = () => {
+    return context.subscriptions.map((subscription) => <Card subscription={subscription} events={subsEvents[subscription.id]} />);
+  }
 
   if(!context.user) {
     return (
@@ -48,8 +39,8 @@ export default function Subscriptions() {
   } else {
     return (
       <section className='subsPage'>
-        { subscriptions.length === 0 ? <p className="noSubs">{text}</p> :
-        subscriptions.map((business, i) => <Card business={business} events={subsEvents[i]} />)}
+        { context.subscriptions.length === 0 ? <p className="noSubs">{text}</p> :
+        (!subsEvents ? null : getCards())}
       </section>
     )
   }

@@ -8,30 +8,10 @@ import Auth from '../auth/auth';
 import LoginContext from '../auth/login-context';
 import './aside.scss';
 
-const URL = process.env.REACT_APP_API;
-
 export default function Aside(props) {
-  const context = useContext(LoginContext);  
-  const [subscriptions, setSubscriptions] = useState([]);
+  const context = useContext(LoginContext);
 
-
-  useEffect(() => {
-    (async() => {
-      if(!context.user) {
-        setSubscriptions([]);
-        return
-      };
-
-      const subIds = await superagent
-        .get(`${URL}/user`)
-        .set('Authorization', `Bearer ${context.token}`)
-        .then(response => response.body.subscriptions)
-        .catch(console.error);
-      const subscriptions = await Promise.all(subIds.map(id => superagent.get(`${URL}/business/${id}`).then(response => ({id, business: response.body}))));
-      setSubscriptions(subscriptions);
-    })();
-  }, [context.user, context.token]);
-
+  console.log(context.subscriptions);
 
   return (
     <aside id="aside">
@@ -42,7 +22,9 @@ export default function Aside(props) {
       <Auth>
         <Link to="/subscriptions">Subscriptions <FontAwesomeIcon icon={faCheckSquare} /></Link>
         <hr></hr>
-        {subscriptions.map(sub => <Link key={sub.id} to={`/business/${sub.id}`}>{sub.business.name}</Link>)}
+        {context.subscriptions.map(sub => (<Link key={sub.id} to={`/business/${sub.id}`}>{
+          sub.business
+        }</Link>))}
       </Auth>
     </aside>
     
